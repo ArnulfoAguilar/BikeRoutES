@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html>
+
+
+
+<head lang="es">
+
+    <title>Crear ruta</title>
+
+    <meta name="description" content="Crea una ruta de mapa en Google Maps para correr, Haz un mapa de ruta para distancia usando el podómetro de mapa de Google, Graba y comparte tus rutas" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta name="verify-v1" content="bA0/t1OlfVVSJ9S9VzSMLG0Q5q+tVVu1GVujXTU72Cc=" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="format-detection" content="telephone=no">
+
+    <meta name="robots" content="index,follow" />
+
+
+    <link rel="icon" type="image/png" href="images/myicon.png" />
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="assets/css/fonts.css" />
+
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+     
+    
+
+
+
+
+    <script type='text/javascript' src='../../html5shim.googlecode.com/svn/trunk/html5.js'></script>
+
+    <script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
+
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+
+    <script id="google_map_api_script" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places&amp;language=es"></script>
+
+    <script type="text/javascript" src="assets/js/main.js"></script>
+
+    <!--<link rel="stylesheet" type="text/css" href="style.css">-->
+
+    <script>
+
+        function autocomplete(){
+
+            var input = document.getElementById('txt_find');
+
+
+            var autocomplete = new google.maps.places.Autocomplete(input);
+
+        }
+        
+google.maps.event.addDomListener(window, 'load', autocomplete);
+</script>
+</head>
+<body onLoad="initMap();">
+   
+
+<div class="body">
+
+    <header>
+
+        <div class="container">
+            
+
+            <div class="top-container">
+
+                <div class="col-md-3 logo-wrapper">
+
+                    <h2 class="h2Banner"><a href="../Home.html" class="aBanner">BikeRoutES</a></h2>
+
+                    
+
+                </div>
+
+                <div class="col-md-9 lang-banner">
+
+                    <div class="">
+
+                        
+                         
+                           
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+    
+
+
+
+    <div class="content">
+
+        <section class="container clearfix">
+
+            <div class="">
+
+                <div class="col-md-8">
+
+                    <h1>Crea tu Ruta</h1>
+
+                    <p class="descriptionCrearRuta">
+
+                        Mapea o dibuja una ruta utilizando la API de Google Maps. Ingresa una dirección o una ciudad para comenzar o sino acerca y arrastra el mapa. Dibuja tu ruta al hacer un clic en el mapa en cada punto de la ruta que deseas seguir. 
+			<br/><br/>
+			Puedes cambiar la vista del mapa, vista satelital, híbrido o vista del terreno utilizando el control en la esquina superior izquierda. Guarda la ruta ingresando un título, una dirección y una foto opcional y comparte la ruta que has guardado para que mas personas se unan.
+
+                    </p>
+
+                </div>
+
+                
+            </div>
+
+        </section>
+
+
+
+        <section class="container clearfix">
+
+            <div id="map_container" class="clearfix">
+
+                <div id="search_street_container" class="col-md-12">
+
+                    <div class="col-md-10 col-sm-8 col-xs-12">
+
+                        <input type="text" class="search-input" id="txt_find" placeholder="Ingresa la dirección aquí..." onKeyPress="return txtKeyPress(event);" />
+
+                        <div id="mapoptions">
+
+                                <span class="col-md-2 col-sm-4 col-xs-12">
+
+                                    <input name="4$chkfollowroad" type="checkbox" id="4_chkfollowroad" onChange="setFollowRoad(this.checked);" />
+
+                                    Sigue caminos
+
+                                </span>
+
+                                
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-2 col-sm-4 col-xs-12">
+
+                        <input type="button" value="Mostrar Ubicación" class="submitOn" onClick="findOnMap();" />
+
+                        <div class="clear"></div>
+
+                    </div>
+
+                </div>
+
+
+                <div id="map_canvas_container" class="col-md-8 col-sm-8">
+
+                    <div id="map_canvas" class="map_part" style="height:520px;"></div>
+
+                </div>
+
+                <div class="map_part col-md-4 col-sm-4">
+
+                    <div class="distance-row clearfix" id="save-root-container">
+
+                        <div id="save_route" style="display:none;">
+
+                            <h3> Guardar Ruta</h3>
+
+                            <div><label>Nombre de Ruta*</label></div>
+
+                            <div><input type="text" id="route_title" ></div>
+
+                            <div><label>Descripción*</label></div>
+
+                            <div><textarea id="route_description"></textarea></div>
+                            <div><label>Imagen</label></div>
+                            
+                            <form enctype="multipart/form-data">
+                                <input name="uploadedfile" type="file" />
+                                <!-- <br>
+                                <input type="submit" value="Subir archivo" />-->
+                            </form>
+
+                            <span id="save-root-to-server" type="button" onClick="saveMapToServer();">Guardar Ruta</span>
+
+                            <span id="route_saved_dive" style="display:none"><span id="route_id_done"></span></span>
+
+                        </div>
+
+                    </div>
+
+                    <div id="route-buttons">
+
+                        <div class="distance-row clearfix">
+
+                            <div class="col-md-6 col-sm-12">
+
+                                <div class="draw_btn" onClick="loopRoute();">
+
+                                    <span class="loop-root-icon"/></span> <span>Ruta Circular</span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 col-sm-12">
+
+                                <div class="draw_btn" onClick="Undo();">
+
+                                    <span class="undo-last-leg-icon"/></span> <span>Deshacer lo último recorrido</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="distance-row clearfix">
+
+                            
+
+                            <div class="col-md-6 col-sm-12">
+
+                                <div class="draw_btn" onClick="clearMarkers();">
+
+                                    <span class="start-over-icon"/></span> <span>Remover todo</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="distance-row clearfix" id="save-root-btn">
+
+                            <div class="col-md-12">
+
+                                <div id="uxLogin" onClick="saveRoute();">
+
+                                    <span>Guardar Ruta</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="distance-row clearfix">
+
+                            <div class="col-md-12">
+
+                                <div class="distance-container clearfix">
+
+                                    <div class="col-md-12"><b>Distancia</b></div>
+
+                                    <div class="col-md-8 col-sm-7 col-xs-7">
+
+                                        <div class="dist">
+
+                                            <div id="totaldistance"></div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div id="tdDistUnit" name="distanceUnit" class="col-md-4 col-sm-4">
+
+                                        <select id='distoption' class="inputtype_l" onChange="setDistanceOption(this.options[this.selectedIndex].value);">
+
+                                            <option value='1' >Millas</option>
+
+                                            <option value='2' selected="selected">Km</option>
+
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    
+</div>
+<script>
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+
+    })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+
+    ga('create', 'UA-2613916-3', 'auto');
+
+    ga('send', 'pageview');
+
+</script>
+
+
+<!--<script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>-->
+
+<!---->
+<!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyATrswEqCRkKdUUo_0Zxt4CnGnSEoYuSoU&sensor=false&language=es"></script>-->
+
+<script type="text/javascript" src="map.js"></script>
+
+
+</script>
+
+</body>
+  <img src="../images/franja_naranja.png">
+    <h5 class="firma">BikeRoutES</h5>
+
+</html>

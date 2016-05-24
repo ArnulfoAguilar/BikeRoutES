@@ -8,22 +8,15 @@
 
     <title>Crear ruta</title>
 
-    <meta name="description" content="Crea una ruta de mapa en Google Maps para correr, Haz un mapa de ruta para distancia usando el podómetro de mapa de Google, Graba y comparte tus rutas" />
-
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <meta name="verify-v1" content="bA0/t1OlfVVSJ9S9VzSMLG0Q5q+tVVu1GVujXTU72Cc=" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <meta name="format-detection" content="telephone=no">
-
-    <meta name="robots" content="index,follow" />
-
-
-    <link rel="icon" type="image/png" href="images/myicon.png" />
+      <link rel="icon" type="image/png" href="images/myicon.png" />
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    
+     <link rel="stylesheet" href="assets/css/nav_Bar.css" />
 
     <link rel="stylesheet" href="assets/css/fonts.css" />
 
@@ -31,37 +24,14 @@
 
     <link rel="stylesheet" href="assets/css/responsive.css" />
      
+
     
-
-
-
-
-    <script type='text/javascript' src='../../html5shim.googlecode.com/svn/trunk/html5.js'></script>
-
-    <script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
-
-    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-
-    <script id="google_map_api_script" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places&amp;language=es"></script>
-
-    <script type="text/javascript" src="assets/js/main.js"></script>
-
-    <!--<link rel="stylesheet" type="text/css" href="style.css">-->
-
-    <script>
-
-        function autocomplete(){
-
-            var input = document.getElementById('txt_find');
-
-
-            var autocomplete = new google.maps.places.Autocomplete(input);
-
-        }
-        
-google.maps.event.addDomListener(window, 'load', autocomplete);
-</script>
+    
+    
 </head>
+    
+    
+    
 <body onLoad="initMap();">
    
 
@@ -81,39 +51,40 @@ google.maps.event.addDomListener(window, 'load', autocomplete);
                     
 
                 </div>
+                
+                <!--Este es el navBar-->
 
-                <div class="col-md-9 lang-banner">
+                <div class="nav">
 
-                    <div class="">
-
-                        
-                         
-                           
-
+                    <div class="navbar_wrapper"><br>
+                        <ul>
+                            <li><a href="../Home.html">Inicio</a></li>
+                            <li><a href="../perfil/perfil.html">Mi Perfil</a></li>
+                            <li><a href="../Conocenos/Conocenos.html">Conocenos</a></li>
+                            
+                        </ul>
                     </div>
 
                 </div>
+                <!--Aqui termina el NavBar-->
 
             </div>
 
         </div>
 
     </header>
-    
 
-
-
-    <div class="content">
+    <div class="content"><!--Este es todo el contenido-->
 
         <section class="container clearfix">
 
             <div class="">
 
-                <div class="col-md-8">
+                <div class="descriptionCrearRuta">
 
                     <h1>Crea tu Ruta</h1>
 
-                    <p class="descriptionCrearRuta">
+                    <p >
 
                         Mapea o dibuja una ruta utilizando la API de Google Maps. Ingresa una dirección o una ciudad para comenzar o sino acerca y arrastra el mapa. Dibuja tu ruta al hacer un clic en el mapa en cada punto de la ruta que deseas seguir. 
 			<br/><br/>
@@ -123,7 +94,6 @@ google.maps.event.addDomListener(window, 'load', autocomplete);
 
                 </div>
 
-                
             </div>
 
         </section>
@@ -135,15 +105,19 @@ google.maps.event.addDomListener(window, 'load', autocomplete);
             <div id="map_container" class="clearfix">
 
                 <div id="search_street_container" class="col-md-12">
+                    <!--AQUI EMPIEZAN LAS OPCIONES PARA BUSCAR UNA DIRECCION DIGITADA -->
 
                     <div class="col-md-10 col-sm-8 col-xs-12">
-
-                        <input type="text" class="search-input" id="txt_find" placeholder="Ingresa la dirección aquí..." onKeyPress="return txtKeyPress(event);" />
+                        
+                        
+                        <!--ESTE ES EL BUSCADOR PARA METER LA DIRECCION-->
+                        <input type="text" class="search-input" id="txt_find" placeholder="Ingresa la dirección aquí..." onKeyPress="" />
 
                         <div id="mapoptions">
 
                                 <span class="col-md-2 col-sm-4 col-xs-12">
-
+                                    
+                                    <!--ESTE ES EL CHECKBOX PARA SEGUIR LAS RUTAS-->
                                     <input name="4$chkfollowroad" type="checkbox" id="4_chkfollowroad" onChange="setFollowRoad(this.checked);" />
 
                                     Sigue caminos
@@ -157,10 +131,8 @@ google.maps.event.addDomListener(window, 'load', autocomplete);
                     </div>
 
                     <div class="col-md-2 col-sm-4 col-xs-12">
-
+                        <!--ESTE ES EL BOTON PARA MOSTRAR LA DIRECCION DESPUES QUE SE DIGITO-->
                         <input type="button" value="Mostrar Ubicación" class="submitOn" onClick="findOnMap();" />
-
-                        <div class="clear"></div>
 
                     </div>
 
@@ -168,6 +140,7 @@ google.maps.event.addDomListener(window, 'load', autocomplete);
 
 
                 <div id="map_canvas_container" class="col-md-8 col-sm-8">
+                    <!--AQUI VA EL MAPA-->
 
                     <div id="map_canvas" class="map_part" style="height:520px;"></div>
 
@@ -178,22 +151,27 @@ google.maps.event.addDomListener(window, 'load', autocomplete);
                     <div class="distance-row clearfix" id="save-root-container">
 
                         <div id="save_route" style="display:none;">
+                            <!--AQUI ESTAN LAS OPCIONES PARA GUARDAR LA RUTA-->
 
                             <h3> Guardar Ruta</h3>
 
                             <div><label>Nombre de Ruta*</label></div>
-
+                            <!--TITULO DE LA RUTRA-->
                             <div><input type="text" id="route_title" ></div>
-
+                            
+                            
                             <div><label>Descripción*</label></div>
-
+                            <!--DESCRIPCION DE LA RUTA-->
                             <div><textarea id="route_description"></textarea></div>
+                            
+                            
+                            
                             <div><label>Imagen</label></div>
+                            <!--BOTON PARA SUBIR IMAGEN DE LA RUTA-->
                             
                             <form enctype="multipart/form-data">
                                 <input name="uploadedfile" type="file" />
-                                <!-- <br>
-                                <input type="submit" value="Subir archivo" />-->
+                               
                             </form>
 
                             <span id="save-root-to-server" type="button" onClick="saveMapToServer();">Guardar Ruta</span>
@@ -201,15 +179,20 @@ google.maps.event.addDomListener(window, 'load', autocomplete);
                             <span id="route_saved_dive" style="display:none"><span id="route_id_done"></span></span>
 
                         </div>
-
+                            <!--AQUI SE TERMINA GUARDAR RUTA-->
                     </div>
 
                     <div id="route-buttons">
+                        <!--aQUI EMPÍEZA LOS BOTONES DE RUTA CIRCULAR, BORRAR TODO Y BORRAR EL ULTIMO PUNTO--> 
 
                         <div class="distance-row clearfix">
+                            
+                            
+                            
+                            
 
                             <div class="col-md-6 col-sm-12">
-
+                                    <!--ESTE ES EL BOTON DE RUTA CIRCULAR-->
                                 <div class="draw_btn" onClick="loopRoute();">
 
                                     <span class="loop-root-icon"/></span> <span>Ruta Circular</span>
@@ -217,9 +200,14 @@ google.maps.event.addDomListener(window, 'load', autocomplete);
                                 </div>
 
                             </div>
+                        
+                        
+                        
+                        
+                        
 
                             <div class="col-md-6 col-sm-12">
-
+                                <!--BOTON DE DESHACER LO ULTIMO-->
                                 <div class="draw_btn" onClick="Undo();">
 
                                     <span class="undo-last-leg-icon"/></span> <span>Deshacer lo último recorrido</span>
@@ -227,12 +215,17 @@ google.maps.event.addDomListener(window, 'load', autocomplete);
                                 </div>
 
                             </div>
+                    
+                    
+                    
+                    
+                    
 
                         </div>
 
                         <div class="distance-row clearfix">
 
-                            
+                            <!--bOTON PARA BORRAR TODOS LOS PUNTOS HECHOS-->
 
                             <div class="col-md-6 col-sm-12">
 
@@ -249,8 +242,8 @@ google.maps.event.addDomListener(window, 'load', autocomplete);
                         <div class="distance-row clearfix" id="save-root-btn">
 
                             <div class="col-md-12">
-
-                                <div id="uxLogin" onClick="saveRoute();">
+                                <!--ESTE ES EL BOTON DE GUARDAR, AL DARLE CLIC GENERA LAS OPCIONES DE GUARDAR -->
+                                <div id="uxLogin" onClick="">
 
                                     <span>Guardar Ruta</span>
 
@@ -265,6 +258,8 @@ google.maps.event.addDomListener(window, 'load', autocomplete);
                             <div class="col-md-12">
 
                                 <div class="distance-container clearfix">
+                                    
+                                <!-- MIDE LA DISTANCIA DE LA RUTA CREADA-->
 
                                     <div class="col-md-12"><b>Distancia</b></div>
 
@@ -279,8 +274,8 @@ google.maps.event.addDomListener(window, 'load', autocomplete);
                                     </div>
 
                                     <div id="tdDistUnit" name="distanceUnit" class="col-md-4 col-sm-4">
-
-                                        <select id='distoption' class="inputtype_l" onChange="setDistanceOption(this.options[this.selectedIndex].value);">
+                                        <!--ESTE ES EL RECUADRO DONDE SE VE LA DISTANCIA TOTAL DE LA RUTA-->
+                                        <select id='distoption' class="inputtype_l" onChange="">
 
                                             <option value='1' >Millas</option>
 
@@ -293,54 +288,21 @@ google.maps.event.addDomListener(window, 'load', autocomplete);
                                 </div>
 
                             </div>
-
                         </div>
 
-                    </div>
-
-                    
-
-                </div>
-
-            </div>
-
+                       
         </section>
 
     </div>
 
 
-    
+        
 </div>
-<script>
 
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-
-    })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
-
-
-    ga('create', 'UA-2613916-3', 'auto');
-
-    ga('send', 'pageview');
-
-</script>
-
-
-<!--<script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>-->
-
-<!---->
-<!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyATrswEqCRkKdUUo_0Zxt4CnGnSEoYuSoU&sensor=false&language=es"></script>-->
-
-<script type="text/javascript" src="map.js"></script>
-
-
-</script>
+<img src="../images/franja_naranja.png">
+    <h5 class="firma">BikeRoutES</h5>
 
 </body>
-  <img src="../images/franja_naranja.png">
-    <h5 class="firma">BikeRoutES</h5>
+ 
 
 </html>

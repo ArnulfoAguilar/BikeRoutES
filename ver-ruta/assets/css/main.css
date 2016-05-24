@@ -1,5 +1,5 @@
 body {
-    /*background: url("../../../images/fondo62.jpg");*/
+   /* background: url("../../../images/fondo62.jpg");*/
     font-family: "Open Sans";
     color: #666666;
     line-height: 1.6;
@@ -10,14 +10,42 @@ h1, h2, h3, h4, h5 {
 a, a:hover, a:focus {
     outline: 0;
 }
+
+
+.nombre{
+    color: chocolate;
+    font-family: fantasy;
+    text-shadow: 2px 2px 1px #000;
+    font-size: 40px;
+    width: 700px;
+    text-align: left;
+    box-shadow: none;
+    border: none;
+    background:None;
+}
+
+.Textarea{
+    margin-top: 25px;
+     color: white;
+    font-family: sans-serif;
+    text-shadow: 1px 1px 0px #000;
+    font-size: 25px;
+    width: 900px;
+    height: 42vh;
+    text-align: left;
+    box-shadow: none;
+    border: none;
+    background: none;
+}
+
 .h2Banner{
-    
+
     font-size: 50px;
     color: #fff;
     font-family:serif;
     text-align: left;
     width: 100%;
-    
+
 }
 .firma{
     text-align: right;
@@ -30,11 +58,11 @@ a, a:hover, a:focus {
 .aBanner{
     color:coral;
     text-shadow: 2px 2px 1px #945
-    
+
     font-size: 40px;
     font-family: fantasy;
-  
-    
+
+
 }
 .aBanner:link{
     text-decoration: none;
@@ -42,7 +70,7 @@ a, a:hover, a:focus {
 .aBanner:hover{
     color: lightcoral;
     text-shadow: -2px -2px 1px #fff;
-    
+
 }
 .descriptionCrearRuta{
     margin-top: 100px;
@@ -55,7 +83,7 @@ header {
     background-image: url("img/banner.jpg");*/
     width: 100%;
     text-align: left;
-    background-size:100% 100%; 
+    background-size:100% 100%;
     border-bottom: 0px solid #dddddd;
     border-right: 0px solid #dddddd;
     border-left: 0px solid #dddddd;
@@ -68,7 +96,7 @@ header  .container {
     width: 100%;
     padding: 5px 0;
     height: 70px;
-    
+
 }
 
 
@@ -80,9 +108,9 @@ header  .container {
 }
 
 .content {
-    
+
     /*padding: 20px 0;/*
-    
+
     /*background-color: rgba(248,248,248,0.8);*/
 }
 .cse .gsc-control-cse, .gsc-control-cse {
@@ -551,9 +579,21 @@ footer ul a {
     text-align: right;
 }
 .body{
-   
+
   background-image: url(../../../images/fondo32.jpg);
-    background-repeat: no-repeat;   
-    
+    background-repeat: no-repeat;
+
 }
 
+.demo-card-wide.mdl-card {
+  width: 200px;
+}
+.demo-card-wide > .mdl-card__title {
+  background: url('img/pro.png') center / cover;
+  color: #fff;
+  height: 175px;
+}
+.demo-card-wide > .mdl-card__menu {
+  height: 100px;
+  color: #fff;
+}
